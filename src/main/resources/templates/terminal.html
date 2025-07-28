@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Terminal - Sandeep Kumar</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="terminal-page">
+    <div class="terminal-fullscreen">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+            </div>
+            <div class="terminal-title">Sandeep's Backend Terminal</div>
+            <a href="/" class="back-link">← Back to Universe</a>
+        </div>
+        <div class="terminal-content">
+            <div class="terminal-output">
+                <div class="output-line">Backend Terminal - Java Developer Console</div>
+                <div class="output-line">Connected to: <span th:text="${developer.name}">Developer</span></div>
+                <div class="output-line">Status: <span class="status-online">ONLINE</span></div>
+                <br>
+                
+                <div th:if="${command != null and !command.isEmpty()}">
+                    <div class="command-line">
+                        <span class="prompt">$ ~/backend-universe > </span>
+                        <span th:text="${command}">command</span>
+                    </div>
+                    <div class="command-output" th:utext="${#strings.replace(output, '&#10;', '<br>')}">
+                        Output will appear here
+                    </div>
+                    <br>
+                </div>
+                
+                <div class="help-section">
+                    <div class="output-line">Available Commands:</div>
+                    <div class="command-list">
+                        <div class="cmd-item">
+                            <a href="/terminal?command=./show-skills" class="cmd-link">./show-skills</a>
+                            <span class="cmd-desc">- Display technical skills and expertise levels</span>
+                        </div>
+                        <div class="cmd-item">
+                            <a href="/terminal?command=./projects list" class="cmd-link">./projects list</a>
+                            <span class="cmd-desc">- Show project portfolio and achievements</span>
+                        </div>
+                        <div class="cmd-item">
+                            <a href="/terminal?command=./contact --me" class="cmd-link">./contact --me</a>
+                            <span class="cmd-desc">- Get contact information and availability</span>
+                        </div>
+                        <!-- <div class="cmd-item">
+                            <a href="/terminal?command=./status" class="cmd-link">./status</a>
+                            <span class="cmd-desc">- Check system and service status</span>
+                        </div> -->
+                        <div class="cmd-item">
+                            <a href="/terminal?command=./achievements" class="cmd-link">./achievements</a>
+                            <span class="cmd-desc">- View career accomplishments</span>
+                        </div>
+                        <div class="cmd-item">
+                            <a href="/terminal?command=./help" class="cmd-link">./help</a>
+                            <span class="cmd-desc">- Show this help menu</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="terminal-input">
+                <form method="post" action="/terminal" class="input-form">
+                    <span class="input-prompt">$ ~/backend-universe > </span>
+                    <input type="text" name="command" class="terminal-input-field" placeholder="Enter command..." autofocus>
+                    <button type="submit" class="hidden">Execute</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

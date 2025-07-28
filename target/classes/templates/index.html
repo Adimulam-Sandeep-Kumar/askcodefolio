@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adimulam Sandeep Kumar - Java Backend Universe</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body th:class="${theme == 'architect' ? 'architect-mode' : 'coder-mode'}">
+    
+    <!-- Navigation Terminal -->
+    <nav class="terminal-nav">
+        <div class="nav-container">
+            <div class="terminal-prompt">
+                <span class="prompt-symbol">$</span>
+                <span class="prompt-path">~/backend-universe</span>
+                <span class="cursor-blink">_</span>
+            </div>
+            <div class="nav-controls">
+                <a th:href="@{/(theme=coder)}" class="theme-toggle" th:classappend="${theme == 'coder' ? 'active' : ''}">CODER</a>
+                <!-- <a th:href="@{/(theme=architect)}" class="theme-toggle" th:classappend="${theme == 'architect' ? 'active' : ''}">ARCHITECT</a> -->
+                <div class="system-time" th:text="${currentTime}">00:00:00</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - 3D Backend Universe -->
+    <section class="hero-universe">
+        <div class="universe-container">
+            <div class="backend-orb">
+                <div class="orb-core">
+                    <div class="tech-ring ring-1">
+                        <span>CORE JAVA</span>
+                    </div>
+                    <div class="tech-ring ring-2">
+                    <span>SPRING BOOT</span>
+                    </div>
+                    <div class="tech-ring ring-3">
+                        <span>MICROSERVICES</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-content">
+                <h1 class="glitch-text" th:text="${developer.name}">Adimulam Sandeep Kumar</h1>
+                <h2 class="subtitle" th:text="${developer.title}">Java Backend Developer</h2>
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span th:text="${developer.status}">ONLINE</span>
+                </div>
+                <p class="hero-description">
+                  	Turning complexity into clarity — 3.5+ years of building Java backends that quietly do the heavy lifting
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminal Interface Section -->
+    <section class="terminal-section">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="btn-close"></span>
+                    <span class="btn-minimize"></span>
+                    <span class="btn-maximize"></span>
+                </div>
+                <div class="terminal-title">backend-terminal</div>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-output">
+                    <div class="output-line">Welcome to Sandeep's Backend Terminal</div>
+                    <div class="output-line">System initialized • All services online</div>
+                    <div class="output-line">Click commands to explore the backend universe:</div>
+                    <br>
+                    <div class="command-examples">
+                        <div class="cmd-example" onclick="executeCommand('./show-skills')">
+                            <span class="cmd-prompt">$ </span>
+                            <span class="cmd-text">./show-skills</span>
+                            <span class="cmd-desc"># Display technical expertise</span>
+                        </div>
+                        <div class="cmd-example" onclick="executeCommand('./projects list')">
+                            <span class="cmd-prompt">$ </span>
+                            <span class="cmd-text">./projects list</span>
+                            <span class="cmd-desc"># Show project portfolio</span>
+                        </div>
+                        <div class="cmd-example" onclick="executeCommand('./contact --me')">
+                            <span class="cmd-prompt">$ </span>
+                            <span class="cmd-text">./contact --me</span>
+                            <span class="cmd-desc"># Get contact information</span>
+                        </div>
+                        <div class="cmd-example" onclick="executeCommand('./achievements')">
+                            <span class="cmd-prompt">$ </span>
+                            <span class="cmd-text">./achievements</span>
+                            <span class="cmd-desc"># View accomplishments</span>
+                        </div>
+                    </div>
+                </div>
+             <!--    <div class="terminal-input-line">
+                    <span class="input-prompt">$ ~/backend-universe > </span>
+                    <span class="cursor-blink">_</span>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Service Room -->
+    <section class="service-room">
+        <h2 class="section-title">Backend Control Hub</h2>
+        <div class="servers-grid">
+            <div class="server-module" th:each="project : ${projects}">
+                <div class="server-display">
+                    <div class="server-header">
+                      <span class="server-name" th:text="${project.name}">Server Name</span>
+                    </div>
+                    <div class="server-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Performance:</span>
+                            <span class="metric-value" th:text="${project.performance}">N/A</span>
+                        </div>
+                       <!--  <div class="metric">
+                            <span class="metric-label">Status:</span>
+                            <span class="metric-value" th:text="${project.status}">UNKNOWN</span>
+                        </div> -->
+                    </div>
+                    <div class="server-description" th:text="${project.description}">
+                        Server description
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Constellation -->
+    <section class="skills-constellation">
+        <h2 class="section-title">Technical Expertise Constellation</h2>
+        <div class="constellation-grid">
+            <div class="skill-star" th:each="skill : ${skills}">
+                <div class="star-core">
+                    <span class="skill-icon" th:text="${skill.icon}">🔧</span>
+                </div>
+                <div class="skill-info">
+                    <h4 th:text="${skill.name}">Skill Name</h4>
+                    <div class="skill-level">
+                        <div class="level-bar">
+                            <div class="level-fill" th:style="'width: ' + ${skill.level} + '%'"></div>
+                        </div>
+                        <span class="level-text" th:text="${skill.level + '%'}">0%</span>
+                    </div>
+                    <span class="skill-category" th:text="${skill.category}">CATEGORY</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline with Glowing Code Thread -->
+    <section class="timeline-section">
+        <h2 class="section-title">Career Code Thread</h2>
+        <div class="timeline-container">
+            <div class="code-thread"></div>
+            <div class="timeline-events">
+                <div class="timeline-event" th:each="event : ${timeline}" th:classappend="${event.status.toLowerCase()}">
+                    <div class="event-marker"></div>
+                    <div class="event-content">
+                        <div class="event-year" th:text="${event.year}">2024</div>
+                        <h4 class="event-title" th:text="${event.title}">Position</h4>
+                        <p class="event-description" th:text="${event.description}">Description</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="achievements-section">
+        <h2 class="section-title">Achievement Unlocked</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card" th:each="achievement : ${achievements}">
+                <div class="achievement-icon" th:text="${achievement.icon}">🏆</div>
+                <div class="achievement-content">
+                    <h4 th:text="${achievement.description}">Achievement</h4>
+                    <span class="achievement-category" th:text="${achievement.category}">CATEGORY</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-terminal">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="btn-close"></span>
+                    <span class="btn-minimize"></span>
+                    <span class="btn-maximize"></span>
+                </div>
+                <div class="terminal-title">contact-protocol.sh</div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-output">
+                    <div class="output-line">$ ./initiate-contact-protocol</div>
+                    <div class="output-line">Establishing secure connection...</div>
+                    <div class="output-line">Connection established ✓</div>
+                    <br>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-label">📧 Email:</span>
+                            <a href="mailto:sandeepkumaradimulam@gmail.com" th:text="${developer.email}">email</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">📱 Phone:</span>
+                            <a th:href="'tel:' + ${developer.phone}" th:text="${developer.phone}">phone</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">🔗 LinkedIn:</span>
+                            <a th:href="'https://' + ${developer.linkedin}" target="_blank" th:text="${developer.linkedin}">linkedin</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">🌍 Location:</span>
+                            <span th:text="${developer.location}">location</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="output-line">Status: Ready for new opportunities</div>
+                    <div class="output-line">Response time: &lt; 24 hours</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-terminal">
+                <span class="prompt">$ </span>
+                <span>System.out.println("Built with ❤️ using Java + Spring Boot + Thymeleaf");</span>
+            </div>
+            <div class="footer-info">
+                <span>© 2025 Adimulam Sandeep Kumar • Backend Universe</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Minimal JavaScript for command simulation (since pure Thymeleaf has limitations)
+        function executeCommand(cmd) {
+            window.location.href = '/terminal?command=' + encodeURIComponent(cmd);
+        }
+        
+        // Auto-refresh API metrics every 30 seconds
+        setTimeout(() => location.reload(), 30000);
+    </script>
+</body>
+</html>
