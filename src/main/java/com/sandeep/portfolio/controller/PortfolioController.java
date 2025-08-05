@@ -14,8 +14,10 @@ public class PortfolioController {
 
     @GetMapping("/")
     public String home(Model model, @RequestParam(defaultValue = "coder") String theme) {
+        String currentTime = LocalDateTime.now().plusHours(5).plusMinutes(30).format(DateTimeFormatter.ofPattern("HH:mm:ss"));
         model.addAttribute("theme", theme);
-        model.addAttribute("currentTime", LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+        model.addAttribute("currentTime", currentTime);
+        // model.addAttribute("currentTime", LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
         model.addAttribute("developer", getDeveloperInfo());
         model.addAttribute("skills", getSkills());
         model.addAttribute("projects", getProjects());
