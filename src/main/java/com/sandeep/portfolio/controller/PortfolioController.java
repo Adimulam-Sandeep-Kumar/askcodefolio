@@ -156,7 +156,7 @@ public class PortfolioController {
     private List<TimelineEvent> getTimeline() {
         return Arrays.asList(
             new TimelineEvent("2025", "Senior Software Engineer", "FirstMeridian Business Services Limited — Leading scalable backend projects", "CURRENT"),
-            new TimelineEvent("2024", "Freelance Java Developer", "Self Employed — Delivered multiple microservice-based backend projects", "COMPLETED"),
+            new TimelineEvent("2024", "Freelance Java Developer", "TriWish Systems Private Limited — Delivered multiple microservice-based backend projects", "COMPLETED"),
             new TimelineEvent("2022–2024", "Java Developer", "Jobiak Software Pvt Ltd — Developed APIs and integrated services", "COMPLETED"),
             new TimelineEvent("2022", "MCA", "Vignan's Institute of Information Technology (VIIT)", "COMPLETED")
         );
